@@ -1,5 +1,6 @@
 package com.example.matias.c2m9monitoringwebserver;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -8,6 +9,10 @@ import android.widget.TextView;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Activity class to allow the application to be run. This class
+ * immediately closes after running the service in the background
+ */
 public class MainActivity extends AppCompatActivity {
 
     EditText welcomeMsg;
@@ -38,9 +43,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Instantiates WebServerService to run in the background
+     *
+     * @param savedInstanceState Reference to bundle object. Activities can be
+     *                           restored to a former state using data saved
+     *                           in this bundle. This parameter is unused.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(this, WebServerService.class);
+        startService(intent);
+        finish();
     }
 }
