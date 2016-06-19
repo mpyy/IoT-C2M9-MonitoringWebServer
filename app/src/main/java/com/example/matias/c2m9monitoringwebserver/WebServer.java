@@ -1,13 +1,11 @@
 package com.example.matias.c2m9monitoringwebserver;
 
 import android.content.Context;
-import String;
 import org.json.JSONObject;
-import Integer;
 
 public class WebServer {
 
-  private static final Integer REFRESH_RATE;
+  private static final int REFRESH_RATE;
 
   private static final String TAG;
 

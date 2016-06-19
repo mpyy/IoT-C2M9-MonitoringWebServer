@@ -1,16 +1,13 @@
 package com.example.matias.c2m9monitoringwebserver;
 
 import java.util.ArrayList;
-import String;
 import android.content.Context;
-import Boolean;
-import Integer;
 
 public class SystemInfo {
 
-  private static final Integer THREAD_SLEEP;
+  private static final int THREAD_SLEEP;
 
-  private static final Integer PERCENTAGE;
+  private static final int PERCENTAGE;
 
   private Context context;
 
@@ -25,11 +22,11 @@ public class SystemInfo {
   return null;
   }
 
-  Boolean getBluetoothStatus() {
+  boolean getBluetoothStatus() {
   return null;
   }
 
-  Boolean getLocationStatus() {
+  boolean getLocationStatus() {
   return null;
   }
 
@@ -37,15 +34,15 @@ public class SystemInfo {
   return null;
   }
 
-  Boolean getWifiStatus() {
+  boolean getWifiStatus() {
   return null;
   }
 
-  String getUSBList() {
+  String[] getUSBList() {
   return null;
   }
 
-  Integer getNumCores() {
+  int getNumCores() {
   return null;
   }
 

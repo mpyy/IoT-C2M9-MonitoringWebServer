@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class HttpServerThread extends Thread {
 
-        static final Integer HttpServerPORT;
+        static final int HttpServerPORT;
 
         public void run() {
         }
