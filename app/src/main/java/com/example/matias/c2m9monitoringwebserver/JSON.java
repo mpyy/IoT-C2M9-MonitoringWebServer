@@ -2,7 +2,11 @@ package com.example.matias.c2m9monitoringwebserver;
 
 import android.content.Context;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * JSON creates a JSONObject that includes SystemInformation
@@ -11,7 +15,6 @@ import org.json.JSONObject;
 public class JSON {
 
     private SystemInfo info;
-
     private Context context;
 
     /**
@@ -22,6 +25,8 @@ public class JSON {
      *                  strings from strings.xml
      */
     public JSON(Context context) {
+        info = new SystemInfo(context);
+        this.context = context;
     }
 
     /**
@@ -31,7 +36,93 @@ public class JSON {
      * @return  String containing the JSONObject with the SystemInfo information
      */
     public JSONObject createJSON() {
-        return null;
+
+        JSONObject json = new JSONObject();
+
+        try {
+            // Computation
+            JSONObject computation = new JSONObject();
+
+            computation.put(context.getString(R.string.cores),
+                    info.getNumCores());
+
+            computation.put(context.getString(R.string.cpu_usage),
+                    info.getCpuUsage() + "%");
+
+            computation.put(context.getString(R.string.mem_usage),
+                    info.getMemoryUsage() + "%");
+
+            // Connection
+            JSONObject network = new JSONObject();
+
+            network.put(context.getString(R.string.bluetooth),
+                    info.getBluetoothStatus());
+
+            network.put(context.getString(R.string.location_service),
+                    info.getLocationStatus());
+
+            JSONObject wifi = new JSONObject();
+            wifi.put(context.getString(R.string.ssid),
+                    info.getWifiNetwork());
+
+            wifi.put(context.getString(R.string.status),
+                    info.getWifiStatus());
+
+            network.put(context.getString(R.string.wifi), wifi);
+
+            // Peripherals
+            JSONObject peripherals = new JSONObject();
+
+            JSONArray usb = new JSONArray();
+            String [] usbList = info.getUSBList();
+
+            for (String device : usbList) {
+                JSONObject temp = new JSONObject();
+                temp.put(context.getString(R.string.device), device);
+                usb.put(temp);
+            }
+
+            peripherals.put(context.getString(R.string.usb), usb);
+
+            // GPIO
+            JSONArray gpio = new JSONArray();
+
+            ArrayList<String> direction = info.getGPIODirection();
+            ArrayList<Integer> values = info.getGPIOValues();
+
+            // Values are 23 and 34 to account for the GPIO Numbers
+            for (int i = 23; i < 34; i++) {
+                JSONObject temp = new JSONObject();
+
+                // Skip over pin 30 to avoid crash
+                if (i == 30) {
+                    continue;
+                }
+
+                temp.put(context.getString(R.string.gpio_number), i);
+                temp.put(context.getString(R.string.value),
+                        values.get(i - 23));
+                temp.put(context.getString(R.string.direction),
+                        direction.get(i - 23));
+                gpio.put(temp);
+            }
+
+            // Combine Everything
+            JSONObject status = new JSONObject();
+
+            status.put(context.getString(R.string.computation), computation);
+            status.put(context.getString(R.string.networks), network);
+            status.put(context.getString(R.string.gpio), gpio);
+            status.put(context.getString(R.string.peripherals), peripherals);
+            status.put(context.getString(R.string.last_update),
+                    info.getLastUpdate());
+
+            json.put(context.getString(R.string.status), status);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
 }

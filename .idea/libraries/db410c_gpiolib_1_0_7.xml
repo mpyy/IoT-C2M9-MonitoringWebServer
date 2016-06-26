@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="db410c_gpiolib-1.0.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.calit2.mooc.iot_db410c/db410c_gpiolib/1.0.7/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.calit2.mooc.iot_db410c/db410c_gpiolib/1.0.7/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.calit2.mooc.iot_db410c/db410c_gpiolib/1.0.7/702eb93683c11bc8a9dc71ce187b4f458553a49a/db410c_gpiolib-1.0.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

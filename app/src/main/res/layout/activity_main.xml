@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(ip)"
-        android:id="@+id/infoip"
+        android:id="@+id/tvIP"
         android:layout_below="@+id/welcomemsg"
         android:layout_alignParentStart="true"/>
 
@@ -41,13 +41,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/infoip"
+        android:layout_below="@+id/tvIP"
         android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(msg)"
-            android:id="@+id/msg"/>
+            android:text="(log)"
+            android:id="@+id/tvLog"/>
     </ScrollView>
 </RelativeLayout>
